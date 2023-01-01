@@ -44,6 +44,9 @@ export const BudgetsProvider = ({children}) => {
     setBudgets(prevBudget => {
       return prevBudget.filter((b) => b.id !== id)
     })
+    setExpenses(prevExpense => {
+      return prevExpense.filter((expense) => expense.budgetId !== id)
+    })
   }
   
 
