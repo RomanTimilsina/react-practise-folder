@@ -7,9 +7,9 @@ export default function UncategorizedBudgetCard(props) {
     (total, expense) => total + expense.amount,
     0
   )
-  console.log(getBudgetExpenses(UNCATEGORIZED_BUDGET_ID))
+  if(amount === 0) return null
 
-  return <BudgetCard amount={amount} name="Uncategorized" gray {...props} />
+  return <BudgetCard onBudgetClick amount={amount} name="Uncategorized" gray {...props} />
 }
 
 
