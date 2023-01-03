@@ -2,6 +2,13 @@ body{
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.card-grid{
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat( auto-fill,  minmax(200px,1fr));
+  gap: 1rem;
+}
+
 .card{
  display: flex;
  justify-content: center;
@@ -12,10 +19,15 @@ body{
  transform-style: preserve-3d;
  background-color: white;
  height: 200px;
- width: 200px;
+
  transition: 300ms;
  cursor:pointer;
  transform: rotateY(var(--rotate-y,0)) translateY(var(--translate-y,0));
+}
+
+.container{
+  
+  margin: 1rem 2rem;
 }
 
 .card:hover{
@@ -34,6 +46,24 @@ padding: 1rem;
 backface-visibility: hidden;
 }
 
+.card .front{
+left:0;
+}
+
 .card .back{
 transform: rotateY(180deg);
+}
+
+.flashcard-options{
+  margin-top: .5rem;
+}
+
+.flashcard-option{
+  margin-top: .25rem;
+  color: #555;
+  font-size: .75rem;
+}
+
+.flashcard-option:first-child{
+  margin-top:0;
 }

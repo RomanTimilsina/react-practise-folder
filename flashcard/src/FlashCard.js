@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {v4 as uuidv4} from 'uuid'
 
 export default function FlashCard({flashcard}) {
   const [flip, setFlip] = useState(false)
@@ -14,7 +15,7 @@ export default function FlashCard({flashcard}) {
       <div className='flashcard-options'>
         {
           flashcard.options.map(option => {
-            return <div className='flashcard-option' key={flashcard.id} >{option}</div>
+            return <div className='flashcard-option' key={uuidv4()} >{option}</div>
           })
         }
       </div>
