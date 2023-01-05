@@ -47,6 +47,28 @@ function App() {
 
   function handleSubmit(e){
     e.preventDefault()
+    axios.get('https://opentdb.com/api.php',{
+      params:{
+        amount: amountEl.current.value,
+        category: categoryEl.current.value
+      }
+    })
+    .then(res => {
+      
+      setFlashcards(res.data.results.map((questionItem) => {
+        
+        const answer = questionItem.correct_answer;
+        const options = [...questionItem.incorrect_answers,answer];
+
+        return {
+          id:  `${uuidv4()}`,
+          question:decodeString(questionItem.question),
+          answer:answer,
+          options:options.sort(() => Math.random() - .5)
+        }
+      }))
+     
+    })
   }
 
   return (
