@@ -46,7 +46,7 @@ body{
 }
 
 .sidebar-item:hover, .sidebar-item:focus{
-  background-color: hsl(265, 100%, 76%);
+  background-color: hsl(265, 100%, 65%);
 }
 
 .sidebar-item.active{

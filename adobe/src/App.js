@@ -1,4 +1,5 @@
 import Slider from './Slider';
+import {useState} from 'react'
 import './App.css';
 import SidebarItem from './SidebarItem';
 
@@ -83,14 +84,49 @@ const DEFAULT_OPTIONS = [
 ]
 
 function App() {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [options, setOptions] = useState(DEFAULT_OPTIONS)
+  const selectedItems = options[selectedIndex]
+
+  function handleSliderChange({target}){
+    setOptions(prevOption => {
+      return prevOption.map((option, index) => {
+        if(index === selectedIndex) return {...option, value: target.value}
+        return option
+      })
+    })
+  }
+  
+  function getStyle(){
+    const filters = options.map(option => {
+      return `${option.property}(${option.value}${option.unit})`
+    })
+
+    return {filter : filters.join(' ')}
+  }
+
   return (
     <div className='container'>
-      <div className='main-image' />
+      <div className='main-image'  style={getStyle()}/>
       <div className='sidebar'>
-        <SidebarItem />
-        <SidebarItem />
+        {
+          options.map((option, index) => {
+            return <SidebarItem 
+                    active={index === selectedIndex}
+                    key={index} 
+                    option={option} 
+                    handleClick={() => setSelectedIndex(index)}
+                    />
+          })
+        }
       </div>
-      <Slider className='slider' />
+      <Slider 
+      min={selectedItems.range.min}
+      max={selectedItems.range.max}
+      value={selectedItems.value}
+      className='slider' 
+      handleSliderChange={handleSliderChange}
+      />
     </div>
   );
 }
